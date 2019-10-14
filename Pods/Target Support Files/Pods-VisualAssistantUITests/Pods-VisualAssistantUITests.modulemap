@@ -1,0 +1,6 @@
+framework module Pods_VisualAssistantUITests {
+  umbrella header "Pods-VisualAssistantUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
