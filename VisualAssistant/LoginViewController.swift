@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
                         return
                     }
                     self!.button.setTitle("Confirm", for: .normal)
-                    strongSelf.statusLabel.text = "Verification done! Confirm?"
+                    strongSelf.statusLabel.text = "Verification done!"
                     self!.control = true
         //            self!.performSegue(withIdentifier: "loginSegue", sender: nil)
                 }
