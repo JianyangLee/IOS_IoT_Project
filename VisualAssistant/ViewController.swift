@@ -51,7 +51,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
             self.TempTextView.text = "\(temp) °C "
             self.PressureTextView.text = "\(pressure) kPa"
         })
-        
+        //
         //background
         self.view.layer.contents = UIImage(named:"background")?.cgImage
     }

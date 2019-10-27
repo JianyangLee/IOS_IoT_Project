@@ -16,6 +16,7 @@ class AtHomeViewController: UIViewController {
         let utterance = AVSpeechUtterance(string: "Now, you are arriving at home")
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
+        //Speak out
         // Do any additional setup after loading the view.
     }
     
