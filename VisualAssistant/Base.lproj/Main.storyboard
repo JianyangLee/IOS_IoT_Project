@@ -242,30 +242,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GQE-pr-sdS">
-                                <rect key="frame" x="43" y="545" width="134" height="120"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TAb-x2-i3Q">
-                                <rect key="frame" x="232" y="542" width="128" height="127"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPr-IM-aja">
-                                <rect key="frame" x="232" y="542" width="128" height="127"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title=" "/>
-                                <connections>
-                                    <segue destination="Gz9-BE-jFK" kind="show" id="knV-Dl-cgK"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCU-rm-hHx">
-                                <rect key="frame" x="43" y="546" width="134" height="119"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title=" "/>
-                                <connections>
-                                    <segue destination="ucz-D2-SP1" kind="show" id="EDH-aY-LDY"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date and Time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJG-V9-oEu">
                                 <rect key="frame" x="121" y="119" width="173" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -294,6 +270,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCU-rm-hHx">
+                                <rect key="frame" x="39" y="519" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title=" Home" image="home"/>
+                                <connections>
+                                    <segue destination="ucz-D2-SP1" kind="show" id="EDH-aY-LDY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPr-IM-aja">
+                                <rect key="frame" x="232" y="519" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title=" Outside" image="outside"/>
+                                <connections>
+                                    <segue destination="Gz9-BE-jFK" kind="show" id="knV-Dl-cgK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="ls7-iI-waq"/>
@@ -312,7 +304,7 @@
             </objects>
             <point key="canvasLocation" x="1911.594202898551" y="130.58035714285714"/>
         </scene>
-        <!--View Controller-->
+        <!--Outside-->
         <scene sceneID="rHs-m3-Iya">
             <objects>
                 <viewController id="Gz9-BE-jFK" sceneMemberID="viewController">
@@ -322,13 +314,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="gow-iG-2M9"/>
                     </view>
-                    <navigationItem key="navigationItem" id="aCw-CY-lQ2"/>
+                    <navigationItem key="navigationItem" title="Outside" id="aCw-CY-lQ2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIE-9h-igx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2939" y="-24"/>
         </scene>
-        <!--View Controller-->
+        <!--Home-->
         <scene sceneID="l4v-57-euf">
             <objects>
                 <viewController id="ucz-D2-SP1" sceneMemberID="viewController">
@@ -338,7 +330,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="mAf-5u-t08"/>
                     </view>
-                    <navigationItem key="navigationItem" id="daS-9F-3XG"/>
+                    <navigationItem key="navigationItem" title="Home" id="daS-9F-3XG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tVE-YR-wGM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -366,7 +358,9 @@
     </scenes>
     <resources>
         <image name="bglogin" width="3023" height="3780"/>
+        <image name="home" width="200" height="200"/>
         <image name="logo" width="500" height="500"/>
+        <image name="outside" width="200" height="200"/>
         <image name="register" width="3744" height="5616"/>
     </resources>
 </document>
