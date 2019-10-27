@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "loginSegue" {
-            let destination = segue.destination as! HomeControllerViewController
+            let destination = segue.destination as! ViewController
         }
     }
     

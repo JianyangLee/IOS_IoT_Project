@@ -22,7 +22,6 @@
 		9BBCEA8A2352C2C2000D460E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BBCEA892352C2C2000D460E /* GoogleService-Info.plist */; };
 		9BBCEA8C2352D64E000D460E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBCEA8B2352D64E000D460E /* LoginViewController.swift */; };
 		C07610BF00AACB37B24FC725 /* Pods_VisualAssistantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79D03753ACD5B195514BE7B0 /* Pods_VisualAssistantTests.framework */; };
-		D867E533236540310076449B /* HomeControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D867E532236540310076449B /* HomeControllerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +66,6 @@
 		9BBCEA892352C2C2000D460E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9BBCEA8B2352D64E000D460E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C37BBCE41AC2C599417EB629 /* Pods_VisualAssistantUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VisualAssistantUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D867E532236540310076449B /* HomeControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerViewController.swift; sourceTree = "<group>"; };
 		DC6A0C9E3DEC433856E480A0 /* Pods-VisualAssistantUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VisualAssistantUITests.release.xcconfig"; path = "Target Support Files/Pods-VisualAssistantUITests/Pods-VisualAssistantUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E051D576E5A81C6F4A37B246 /* Pods-VisualAssistantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VisualAssistantTests.debug.xcconfig"; path = "Target Support Files/Pods-VisualAssistantTests/Pods-VisualAssistantTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E4595C12263250DA01BC8979 /* Pods-VisualAssistant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VisualAssistant.release.xcconfig"; path = "Target Support Files/Pods-VisualAssistant/Pods-VisualAssistant.release.xcconfig"; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 				9B3347C22352C04F007DFF77 /* VisualAssistant.xcdatamodeld */,
 				9BBCEA8B2352D64E000D460E /* LoginViewController.swift */,
 				9B0640532354068F008FF429 /* RegisterViewController.swift */,
-				D867E532236540310076449B /* HomeControllerViewController.swift */,
 			);
 			path = VisualAssistant;
 			sourceTree = "<group>";
@@ -407,7 +404,6 @@
 			files = (
 				9B3347BE2352C04F007DFF77 /* ViewController.swift in Sources */,
 				9B3347BA2352C04F007DFF77 /* AppDelegate.swift in Sources */,
-				D867E533236540310076449B /* HomeControllerViewController.swift in Sources */,
 				9B3347C42352C04F007DFF77 /* VisualAssistant.xcdatamodeld in Sources */,
 				9B0640542354068F008FF429 /* RegisterViewController.swift in Sources */,
 				9BBCEA8C2352D64E000D460E /* LoginViewController.swift in Sources */,
