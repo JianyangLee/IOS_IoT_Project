@@ -71,7 +71,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         dateformatter.locale = NSLocale(localeIdentifier:"en_US") as Locale
         dateformatter.dateFormat = "HH:mm:ss"
         let strNowTime = dateformatter.string(from: date as Date) as String
-        let utterance = AVSpeechUtterance(string: "Current time is " + strNowTime)
+        let utterance = AVSpeechUtterance(string: "Your current time is " + strNowTime)
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
       }
