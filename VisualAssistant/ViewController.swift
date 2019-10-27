@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import FirebaseDatabase
+import AVFoundation
 
 class ViewController: UIViewController ,CLLocationManagerDelegate{
 
@@ -21,6 +22,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
     var locationManager :CLLocationManager!
     var currentLocation :CLLocation!
     
+    var ref: DatabaseReference!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -30,6 +32,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
         let result = formatter.string(from: date)
+        
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -37,18 +40,30 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
-//        locationToAddress ()
-//        self.ref = Database.database().reference().root.child("iosassignment-9f7ef").child("Data")
-//
-//        self.ref?.child(result).observe(.childAdded, with: { (snapshot) in
-//            guard let restDict = snapshot.value as? [String: Any] else { return }
-//            let something = restDict["temp"] as! Float
-//            self.setTemperature(temp: something)
-//            self.changeImageColor(red:restDict["red"] as! Int, green: restDict["green"] as! Int, blue: restDict["blue"] as! Int)
-//        })
+        self.ref = Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("tempAndPressure")
+
+        self.ref?.observe(.childAdded, with: { (snapshot) in
+            guard let restDict = snapshot.value as? [String: Any] else { return }
+            let temp = restDict["temp"] as! NSNumber
+            let press = restDict["pressure"] as! NSNumber
+            
+            let pressure = NumberFormatter.localizedString(from: press, number: .decimal)
+            self.TempTextView.text = "\(temp) °C "
+            self.PressureTextView.text = "\(pressure) kPa"
+        })
         
         //background
         self.view.layer.contents = UIImage(named:"background")?.cgImage
+    }
+    
+    
+    @IBAction func speechOut(_ sender: Any) {
+        let text1 = "Current temperature is" + TempTextView.text!
+        let text2 = " and current air pressure is" + PressureTextView.text!
+        let text = text1 + text2
+        let utterance = AVSpeechUtterance(string: text)
+        let synth = AVSpeechSynthesizer()
+        synth.speak(utterance)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
