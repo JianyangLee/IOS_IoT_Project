@@ -24,6 +24,14 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
     
     var ref: DatabaseReference!
     override func viewDidLoad() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapFunction))
+        TimeTextView.isUserInteractionEnabled = true
+        TimeTextView.addGestureRecognizer(tap)
+        
+        let loc = UITapGestureRecognizer(target: self, action: #selector(ViewController.currentLoc))
+        LocationTextView.isUserInteractionEnabled = true
+        LocationTextView.addGestureRecognizer(loc)
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         Timer.scheduledTimer(timeInterval: 1.0,target:self,selector: #selector(self.setTime), userInfo: nil, repeats: true )
@@ -56,6 +64,24 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         self.view.layer.contents = UIImage(named:"background")?.cgImage
     }
     
+    @objc
+    func tapFunction(sender:UITapGestureRecognizer) {
+        let date = NSDate()
+        let dateformatter = DateFormatter()
+        dateformatter.locale = NSLocale(localeIdentifier:"en_US") as Locale
+        dateformatter.dateFormat = "HH:mm:ss"
+        let strNowTime = dateformatter.string(from: date as Date) as String
+        let utterance = AVSpeechUtterance(string: "Current time is " + strNowTime)
+        let synth = AVSpeechSynthesizer()
+        synth.speak(utterance)
+      }
+   
+    @objc
+    func currentLoc(sender:UITapGestureRecognizer) {
+        let utterance = AVSpeechUtterance(string: "You are now in the " + LocationTextView.text! + " currently")
+           let synth = AVSpeechSynthesizer()
+           synth.speak(utterance)
+         }
     
     @IBAction func speechOut(_ sender: Any) {
         let text1 = "Current temperature is" + TempTextView.text!
