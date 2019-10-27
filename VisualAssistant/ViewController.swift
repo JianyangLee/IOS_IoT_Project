@@ -8,14 +8,18 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 import FirebaseDatabase
 
-class ViewController: UIViewController {
+class ViewController: UIViewController ,CLLocationManagerDelegate{
 
     @IBOutlet weak var TimeTextView: UILabel!
     @IBOutlet weak var LocationTextView: UILabel!
     @IBOutlet weak var TempTextView: UILabel!
     @IBOutlet weak var PressureTextView: UILabel!
+    
+    var locationManager :CLLocationManager!
+    var currentLocation :CLLocation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +30,14 @@ class ViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
         let result = formatter.string(from: date)
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.distanceFilter = 10
         
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+//        locationToAddress ()
 //        self.ref = Database.database().reference().root.child("iosassignment-9f7ef").child("Data")
 //
 //        self.ref?.child(result).observe(.childAdded, with: { (snapshot) in
@@ -36,10 +47,20 @@ class ViewController: UIViewController {
 //            self.changeImageColor(red:restDict["red"] as! Int, green: restDict["green"] as! Int, blue: restDict["blue"] as! Int)
 //        })
         
-        
-        
         //background
         self.view.layer.contents = UIImage(named:"background")?.cgImage
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        let location = locations.last!
+        currentLocation = location
+        if (location.horizontalAccuracy > 0) {
+                    self.locationManager.stopUpdatingLocation()
+                    print("latitude: \(location.coordinate.latitude) longitude: \(location.coordinate.longitude)")
+                    self.locationManager.stopUpdatingLocation()
+        }
+        locationToAddress ()
     }
     
     @objc func setTime() {
@@ -53,21 +74,31 @@ class ViewController: UIViewController {
 
     func locationToAddress ()
     {
-    let location = CLLocation(latitude: -37, longitude: 145)
-    let geoCoder = CLGeocoder()
-    geoCoder.reverseGeocodeLocation(location, completionHandler: {(placemarks, error) in
-        if error == nil {
-            let firstLocation = placemarks?[0]
+        if let currentLocation = currentLocation {
+            print(currentLocation.coordinate.latitude,currentLocation.coordinate.longitude)
+            let location = currentLocation
+            let geoCoder = CLGeocoder()
+            geoCoder.reverseGeocodeLocation(location, completionHandler: {(placemarks, error) in
+                if error == nil {
+                    let firstLocation = placemarks?[0]
+                    
+                    print(firstLocation!.name, firstLocation!.locality, firstLocation?.administrativeArea, firstLocation!.postalCode)
+                    
+                    self.LocationTextView.text = "\((firstLocation!.locality)!)"
+                    
+                    //completionHandler(firstLocation)
+                } else {
+                    //completionHandler(nil)
+                }
+            })
             
-            //print(firstLocation!.name, firstLocation!.locality, firstLocation?.administrativeArea, firstLocation!.postalCode)
-            
-            self.LocationTextView.text = "\((firstLocation!.name)!), \((firstLocation!.locality)!), \((firstLocation!.administrativeArea)!), \((firstLocation!.postalCode)!)"
-            
-            //completionHandler(firstLocation)
-        } else {
-            //completionHandler(nil)
         }
-    })
+        else {
+            let alertController = UIAlertController(title: "Location Not Found", message: "The location has not yet been determined.", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                present(alertController, animated: true, completion: nil)
+        }
+    
     }
 }
 
