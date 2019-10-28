@@ -55,6 +55,17 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
             let temp = restDict["temp"] as! NSNumber
             let press = restDict["pressure"] as! NSNumber
             
+            let value = temp as? Int
+            if (value! < 20){
+                self.displayMessage(withTitle: "Cold Weather", message: "Please wearing more clothes.")
+                let utterance = AVSpeechUtterance(string: "The temperature is below 20°C, " + "Please wearing more clothes.")
+                let synth = AVSpeechSynthesizer()
+                synth.speak(utterance)
+                
+            }
+            
+            
+            
             let pressure = NumberFormatter.localizedString(from: press, number: .decimal)
             self.TempTextView.text = "\(temp) °C "
             self.PressureTextView.text = "\(pressure) kPa"
@@ -140,6 +151,12 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
                 present(alertController, animated: true, completion: nil)
         }
     
+    }
+    
+    func displayMessage(withTitle: String, message: String){
+        let alert = UIAlertController(title: withTitle, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert,animated: true,completion: nil)
     }
 }
 
