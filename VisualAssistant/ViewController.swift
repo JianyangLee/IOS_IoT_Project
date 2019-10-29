@@ -24,6 +24,9 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
     
     var ref: DatabaseReference!
     override func viewDidLoad() {
+        let utterance = AVSpeechUtterance(string: "Press left side to go arriving-home mode, press right side to go leaving-home mode.")
+        let synth = AVSpeechSynthesizer()
+        synth.speak(utterance)
         let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapFunction))
         TimeTextView.isUserInteractionEnabled = true
         TimeTextView.addGestureRecognizer(tap)
@@ -63,8 +66,6 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
                 synth.speak(utterance)
                 
             }
-            
-            
             
             let pressure = NumberFormatter.localizedString(from: press, number: .decimal)
             self.TempTextView.text = "\(temp) °C "
