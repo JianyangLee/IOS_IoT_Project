@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 import FirebaseDatabase
 import AVFoundation
+import AudioToolbox
 
 class ViewController: UIViewController ,CLLocationManagerDelegate{
 
@@ -60,6 +61,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
             
             let value = temp as? Int
             if (value! < 20){
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
                 self.displayMessage(withTitle: "Cold Weather", message: "Please wearing more clothes.")
                 let utterance = AVSpeechUtterance(string: "The temperature is below 20°C, " + "Please wearing more clothes.")
                 let synth = AVSpeechSynthesizer()
