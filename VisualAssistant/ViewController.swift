@@ -19,12 +19,17 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
     @IBOutlet weak var LocationTextView: UILabel!
     @IBOutlet weak var TempTextView: UILabel!
     @IBOutlet weak var PressureTextView: UILabel!
+    @IBOutlet weak var StayHomeUIButton: UIButton!
+    @IBOutlet weak var OutsideUIButton: UIButton!
+    @IBOutlet weak var SpeakingUIButton: UIButton!
     
     var locationManager :CLLocationManager!
     var currentLocation :CLLocation!
     
     var ref: DatabaseReference!
     override func viewDidLoad() {
+        animations()
+        
         let utterance = AVSpeechUtterance(string: "Press left side to go arriving-home mode, press right side to go leaving-home mode.")
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
@@ -40,18 +45,20 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         // Do any additional setup after loading the view.
         Timer.scheduledTimer(timeInterval: 1.0,target:self,selector: #selector(self.setTime), userInfo: nil, repeats: true )
         
+        //Change the date format
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
         let result = formatter.string(from: date)
         
+        //Setting location manager
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.distanceFilter = 10
-        
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        
         self.ref = Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("tempAndPressure")
 
         self.ref?.observe(.childAdded, with: { (snapshot) in
@@ -66,16 +73,18 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
                 let utterance = AVSpeechUtterance(string: "The temperature is below 20°C, " + "Please wearing more clothes.")
                 let synth = AVSpeechSynthesizer()
                 synth.speak(utterance)
-                
             }
-            
             let pressure = NumberFormatter.localizedString(from: press, number: .decimal)
             self.TempTextView.text = "\(temp) °C "
             self.PressureTextView.text = "\(pressure) kPa"
         })
         //
         //background
-        self.view.layer.contents = UIImage(named:"background")?.cgImage
+        self.view.layer.contents = UIImage(named:"bghome")?.cgImage
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
     
     @objc
@@ -104,6 +113,38 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         let utterance = AVSpeechUtterance(string: text)
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
+    }
+    
+    func animations ()
+    {
+        TimeTextView.center.y  -= view.bounds.height
+        LocationTextView.center.y  -= view.bounds.height
+        TempTextView.center.x -= view.bounds.width
+        PressureTextView.center.x += view.bounds.width
+        StayHomeUIButton.center.x -= view.bounds.width
+        OutsideUIButton.center.x += view.bounds.width
+        SpeakingUIButton.center.y  += view.bounds.height
+        UIView.animate(withDuration: 1) {
+            self.TimeTextView.center.y += self.view.bounds.height
+        }
+        UIView.animate(withDuration: 1) {
+            self.LocationTextView.center.y += self.view.bounds.height
+        }
+        UIView.animate(withDuration: 1) {
+            self.TempTextView.center.x += self.view.bounds.width
+        }
+        UIView.animate(withDuration: 1) {
+            self.PressureTextView.center.x -= self.view.bounds.width
+        }
+        UIView.animate(withDuration: 1) {
+            self.SpeakingUIButton.center.y -= self.view.bounds.height
+        }
+        UIView.animate(withDuration: 1) {
+            self.StayHomeUIButton.center.x += self.view.bounds.width
+        }
+        UIView.animate(withDuration: 1) {
+            self.OutsideUIButton.center.x -= self.view.bounds.width
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])

@@ -12,6 +12,8 @@ import FirebaseDatabase
 
 class OutsideViewController: UIViewController {
     var ref: DatabaseReference!
+    @IBOutlet weak var warningText: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
@@ -40,13 +42,9 @@ class OutsideViewController: UIViewController {
             for _ in 1...5 {
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
                 usleep(600000)
-            }
-            
-            
-            
-          
+            }         
         })
-        
+        self.view.layer.contents = UIImage(named:"bghome")?.cgImage
         // Do any additional setup after loading the view.
     }
     

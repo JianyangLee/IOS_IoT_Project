@@ -12,6 +12,7 @@ import FirebaseDatabase
 
 class AtHomeViewController: UIViewController {
     var ref: DatabaseReference!
+    @IBOutlet weak var warningText: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
@@ -37,7 +38,7 @@ class AtHomeViewController: UIViewController {
             synth.speak(utterance)
         })
         
-        
+        self.view.layer.contents = UIImage(named:"bghome")?.cgImage
         //Speak out
         // Do any additional setup after loading the view.
     }

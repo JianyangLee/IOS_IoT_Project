@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lfm-ce-edm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lfm-ce-edm">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -286,10 +286,10 @@
                                     <segue destination="Gz9-BE-jFK" kind="show" id="knV-Dl-cgK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66f-2u-nju">
-                                <rect key="frame" x="184" y="733" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66f-2u-nju">
+                                <rect key="frame" x="161" y="739" width="92" height="76"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Button" image="speaking"/>
                                 <connections>
                                     <action selector="speechOut:" destination="qnq-5z-pbk" eventType="touchUpInside" id="wNi-X2-AqQ"/>
                                 </connections>
@@ -303,7 +303,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="LocationTextView" destination="O0f-49-fyP" id="m4O-Jb-lsG"/>
+                        <outlet property="OutsideUIButton" destination="GPr-IM-aja" id="GZv-gG-hG7"/>
                         <outlet property="PressureTextView" destination="r56-BW-14P" id="WYP-fg-9mq"/>
+                        <outlet property="SpeakingUIButton" destination="66f-2u-nju" id="Yea-Sp-b46"/>
+                        <outlet property="StayHomeUIButton" destination="vCU-rm-hHx" id="ijK-A8-iCU"/>
                         <outlet property="TempTextView" destination="2ae-X7-DUj" id="AV8-Wo-tgM"/>
                         <outlet property="TimeTextView" destination="JJG-V9-oEu" id="SUz-bv-XTG"/>
                     </connections>
@@ -319,14 +322,26 @@
                     <view key="view" contentMode="scaleToFill" id="q5d-4n-mnR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0D-G5-cHR">
+                                <rect key="frame" x="88" y="250" width="263" height="186"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="gow-iG-2M9"/>
                     </view>
                     <navigationItem key="navigationItem" title="Outside" id="aCw-CY-lQ2"/>
+                    <connections>
+                        <outlet property="warningText" destination="L0D-G5-cHR" id="sGK-Ey-sIE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIE-9h-igx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2939" y="-24"/>
+            <point key="canvasLocation" x="2937.68115942029" y="-24.107142857142858"/>
         </scene>
         <!--Home-->
         <scene sceneID="l4v-57-euf">
@@ -335,14 +350,26 @@
                     <view key="view" contentMode="scaleToFill" id="8d0-3b-sfn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vk-lM-kN5">
+                                <rect key="frame" x="70" y="201" width="262" height="228"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="mAf-5u-t08"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="daS-9F-3XG"/>
+                    <connections>
+                        <outlet property="warningText" destination="3vk-lM-kN5" id="PyZ-sq-jlI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tVE-YR-wGM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2938" y="666"/>
+            <point key="canvasLocation" x="2937.68115942029" y="665.625"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aYy-FQ-DF1">
@@ -370,5 +397,6 @@
         <image name="logo" width="500" height="500"/>
         <image name="outside" width="200" height="200"/>
         <image name="register" width="3744" height="5616"/>
+        <image name="speaking" width="261" height="200"/>
     </resources>
 </document>
