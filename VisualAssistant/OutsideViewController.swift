@@ -32,11 +32,9 @@ class OutsideViewController: UIViewController {
         self.ref?.observe(.childAdded, with: { (snapshot) in
             guard let restDict = snapshot.value as? [String: Any] else { return }
             let value = restDict["distance"] as! NSNumber
-            
-            let distance = value as? Float
-            
             self.displayMessage(withTitle: "Watch out!", message: "Watch out the obstacle.")
-            let utterance = AVSpeechUtterance(string: "Watch out, an obstacle is in front you. it is \(String(describing: distance)) away from you")
+            let distance = value as? Float
+            let utterance = AVSpeechUtterance(string: "Watch out, an obstacle is in front you. It is \(String(describing: distance)) away from you")
             let synth = AVSpeechSynthesizer()
             synth.speak(utterance)
             

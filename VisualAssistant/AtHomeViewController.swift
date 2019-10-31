@@ -32,11 +32,11 @@ class AtHomeViewController: UIViewController {
             let value = restDict["distance"] as! NSNumber
             
             let distance = value as? Float
-            
             self.displayMessage(withTitle: "Alert", message: "Something is reaching your home.")
             let utterance = AVSpeechUtterance(string: "Hi, something is near your door, please check.")
             let synth = AVSpeechSynthesizer()
             synth.speak(utterance)
+            
         })
         
         self.view.layer.contents = UIImage(named:"bghome")?.cgImage

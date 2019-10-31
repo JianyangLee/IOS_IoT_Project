@@ -42,7 +42,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     [weak self] user, error in
                     guard let strongSelf = self else { return }
                     if (error != nil){
-                        strongSelf.statusLabel.text = "Error happens, Check your user email and password"
+                        strongSelf.statusLabel.text = "Error, Check your user email and password"
                         self!.username.text = ""
                         self!.password.text = ""
                         print(error)
