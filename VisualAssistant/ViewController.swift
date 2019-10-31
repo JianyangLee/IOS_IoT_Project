@@ -51,6 +51,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         formatter.dateFormat = "dd-MM-yyyy"
         let result = formatter.string(from: date)
         
+//    FirebaseDatabase.Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("tempAndPressure").removeValue()
         //Setting location manager
         locationManager = CLLocationManager()
         locationManager.delegate = self

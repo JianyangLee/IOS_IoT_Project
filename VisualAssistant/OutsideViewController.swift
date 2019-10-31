@@ -16,11 +16,14 @@ class OutsideViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
         let result = formatter.string(from: date)
+        
+    FirebaseDatabase.Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("Distance").removeValue()
         
         let utterance = AVSpeechUtterance(string: "Now, you are leaving home")
         let synth = AVSpeechSynthesizer()

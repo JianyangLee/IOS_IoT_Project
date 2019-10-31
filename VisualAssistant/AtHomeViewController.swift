@@ -21,6 +21,7 @@ class AtHomeViewController: UIViewController {
         formatter.dateFormat = "dd-MM-yyyy"
         let result = formatter.string(from: date)
         
+    FirebaseDatabase.Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("Distance").removeValue()
         let utterance = AVSpeechUtterance(string: "Now, you are arriving at home. The device will continue to monitor your door.")
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
