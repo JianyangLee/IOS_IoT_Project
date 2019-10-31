@@ -35,6 +35,7 @@ class OutsideViewController: UIViewController {
             
             let distance = value as? Float
             
+            self.displayMessage(withTitle: "Watch out!", message: "Watch out the obstacle.")
             let utterance = AVSpeechUtterance(string: "Watch out, an obstacle is in front you. it is \(String(describing: distance)) away from you")
             let synth = AVSpeechSynthesizer()
             synth.speak(utterance)
@@ -58,5 +59,10 @@ class OutsideViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    func displayMessage(withTitle: String, message: String){
+           let alert = UIAlertController(title: withTitle, message: message, preferredStyle: UIAlertController.Style.alert)
+           alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+           self.present(alert,animated: true,completion: nil)
+       }
 
 }

@@ -33,6 +33,7 @@ class AtHomeViewController: UIViewController {
             
             let distance = value as? Float
             
+            self.displayMessage(withTitle: "Alert", message: "Something is reaching your home.")
             let utterance = AVSpeechUtterance(string: "Hi, something is near your door, please check.")
             let synth = AVSpeechSynthesizer()
             synth.speak(utterance)
@@ -53,5 +54,10 @@ class AtHomeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    func displayMessage(withTitle: String, message: String){
+             let alert = UIAlertController(title: withTitle, message: message, preferredStyle: UIAlertController.Style.alert)
+             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+             self.present(alert,animated: true,completion: nil)
+         }
     
 }
