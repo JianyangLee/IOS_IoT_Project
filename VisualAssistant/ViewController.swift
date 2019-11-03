@@ -116,8 +116,10 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         synth.speak(utterance)
     }
     
+    //Add animations in the home page element
     func animations ()
     {
+        //Removew element first
         TimeTextView.center.y  -= view.bounds.height
         LocationTextView.center.y  -= view.bounds.height
         TempTextView.center.x -= view.bounds.width
@@ -125,6 +127,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         StayHomeUIButton.center.x -= view.bounds.width
         OutsideUIButton.center.x += view.bounds.width
         SpeakingUIButton.center.y  += view.bounds.height
+        //move the element back
         UIView.animate(withDuration: 1) {
             self.TimeTextView.center.y += self.view.bounds.height
         }
@@ -178,24 +181,19 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
             geoCoder.reverseGeocodeLocation(location, completionHandler: {(placemarks, error) in
                 if error == nil {
                     let firstLocation = placemarks?[0]
-                    
                     print(firstLocation!.name, firstLocation!.locality, firstLocation?.administrativeArea, firstLocation!.postalCode)
-                    
                     self.LocationTextView.text = "\((firstLocation!.locality)!)"
-                    
                     //completionHandler(firstLocation)
                 } else {
                     //completionHandler(nil)
                 }
             })
-            
         }
         else {
             let alertController = UIAlertController(title: "Location Not Found", message: "The location has not yet been determined.", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
                 present(alertController, animated: true, completion: nil)
         }
-    
     }
     
     func displayMessage(withTitle: String, message: String){
