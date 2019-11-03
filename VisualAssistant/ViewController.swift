@@ -59,14 +59,17 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         locationManager.distanceFilter = 10
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        //
+        //background
+        self.view.layer.contents = UIImage(named:"bghome")?.cgImage
         
         self.ref = Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("tempAndPressure")
 
+        sleep(4)
         self.ref?.observe(.childAdded, with: { (snapshot) in
             guard let restDict = snapshot.value as? [String: Any] else { return }
             let temp = restDict["temp"] as! NSNumber
             let press = restDict["pressure"] as! NSNumber
-            
             let value = temp as? Int
             if (value! < 20){
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
@@ -79,9 +82,8 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
             self.TempTextView.text = "\(temp) °C "
             self.PressureTextView.text = "\(pressure) kPa"
         })
-        //
-        //background
-        self.view.layer.contents = UIImage(named:"bghome")?.cgImage
+       
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

@@ -51,8 +51,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self!.button.setTitle("Confirm", for: .normal)
                     strongSelf.statusLabel.text = "Verification done!"
                     self!.control = true
+                    //Alert enter
+                    self!.alertEnter()
         //            self!.performSegue(withIdentifier: "loginSegue", sender: nil)
                 }
+    }
+    
+    func alertEnter(){
+        let alertController = UIAlertController(title: "Enter device ID", message: "", preferredStyle: .alert)
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Enter unique ID"
+        }
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { alert -> Void in
+           
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: { (action : UIAlertAction!) -> Void in })
+      
+
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+
+        self.present(alertController, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
