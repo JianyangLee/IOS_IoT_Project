@@ -72,6 +72,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
             let press = restDict["pressure"] as! NSNumber
             let value = temp as? Int
             if (value! < 20){
+                //vibration
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
                 self.displayMessage(withTitle: "Cold Weather", message: "Please wearing more clothes.")
                 let utterance = AVSpeechUtterance(string: "The temperature is below 20°C, " + "Please wearing more clothes.")
