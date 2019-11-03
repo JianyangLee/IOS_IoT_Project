@@ -34,13 +34,14 @@ class AtHomeViewController: UIViewController {
             
             let distance = value as? Float
             self.displayMessage(withTitle: "Alert", message: "Something is reaching your home.")
+            self.warningText.text = "Something is reaching your home."
             let utterance = AVSpeechUtterance(string: "Hi, something is near your door, please check.")
             let synth = AVSpeechSynthesizer()
             synth.speak(utterance)
             
         })
         
-        self.view.layer.contents = UIImage(named:"bghome")?.cgImage
+        self.view.layer.contents = UIImage(named:"stayhome")?.cgImage
         //Speak out
         // Do any additional setup after loading the view.
     }

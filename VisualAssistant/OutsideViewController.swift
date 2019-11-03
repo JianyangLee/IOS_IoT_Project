@@ -12,11 +12,12 @@ import FirebaseDatabase
 
 class OutsideViewController: UIViewController {
     var ref: DatabaseReference!
+    @IBOutlet weak var detectingGifImageView: UIImageView!
     @IBOutlet weak var warningText: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        detectingGifImageView.loadGif(name: "detecting")
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         let date = Date()
         let formatter = DateFormatter()
@@ -37,7 +38,7 @@ class OutsideViewController: UIViewController {
             let value = restDict["distance"] as! NSNumber
             self.displayMessage(withTitle: "Watch out!", message: "Watch out the obstacle.")
             let distance = value as? Float
-            let utterance = AVSpeechUtterance(string: "Watch out, an obstacle is in front you. It is \(String(describing: distance)) away from you")
+            let utterance = AVSpeechUtterance(string: "Watch out.")
             let synth = AVSpeechSynthesizer()
             synth.speak(utterance)
             
@@ -46,7 +47,7 @@ class OutsideViewController: UIViewController {
                 usleep(600000)
             }         
         })
-        self.view.layer.contents = UIImage(named:"bghome")?.cgImage
+        self.view.layer.contents = UIImage(named:"outsidebg")?.cgImage
         // Do any additional setup after loading the view.
     }
     
