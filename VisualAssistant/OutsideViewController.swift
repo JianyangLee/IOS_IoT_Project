@@ -52,6 +52,7 @@ class OutsideViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        //Remove all observers when quit the page.
         self.ref.removeAllObservers()
     }
     
