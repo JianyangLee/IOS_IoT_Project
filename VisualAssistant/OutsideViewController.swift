@@ -26,18 +26,18 @@ class OutsideViewController: UIViewController {
         
     FirebaseDatabase.Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("Distance").removeValue()
         
-        let utterance = AVSpeechUtterance(string: "Now, you are leaving home")
+        let utterance = AVSpeechUtterance(string: "Now, it is detecting the object in front of you.")
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
         
         
         self.ref = Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("Distance")
-        
+            //Once the new child is added (which measn the distance is less than 1.5 meter, the warning message is spoken out.
         self.ref?.observe(.childAdded, with: { (snapshot) in
             guard let restDict = snapshot.value as? [String: Any] else { return }
-            let value = restDict["distance"] as! NSNumber
+//            let value = restDict["distance"] as! NSNumber
             self.displayMessage(withTitle: "Watch out!", message: "Watch out the obstacle.")
-            let distance = value as? Float
+//            let distance = value as? Float
             let utterance = AVSpeechUtterance(string: "Watch out.")
             let synth = AVSpeechSynthesizer()
             synth.speak(utterance)

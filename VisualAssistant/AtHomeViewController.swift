@@ -21,25 +21,25 @@ class AtHomeViewController: UIViewController {
         formatter.dateFormat = "dd-MM-yyyy"
         let result = formatter.string(from: date)
         
-    FirebaseDatabase.Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("Distance").removeValue()
-        let utterance = AVSpeechUtterance(string: "Now, you are arriving at home. The device will continue to monitor your door.")
+    FirebaseDatabase.Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("Motion").removeValue()
+        let utterance = AVSpeechUtterance(string: "It is monitoring your home.")
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
         
-        self.ref = Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("Distance")
-        
-        self.ref?.observe(.childAdded, with: { (snapshot) in
-            guard let restDict = snapshot.value as? [String: Any] else { return }
-            let value = restDict["distance"] as! NSNumber
-            
-            let distance = value as? Float
-            self.displayMessage(withTitle: "Alert", message: "Something is reaching your home.")
-            self.warningText.text = "Something is reaching your home."
-            let utterance = AVSpeechUtterance(string: "Hi, something is near your door, please check.")
-            let synth = AVSpeechSynthesizer()
-            synth.speak(utterance)
-            
-        })
+//        self.ref = Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("Motion")
+//
+//        self.ref?.observe(.childAdded, with: { (snapshot) in
+//            guard let restDict = snapshot.value as? [String: Any] else { return }
+//            let value = restDict["distance"] as! NSNumber
+//
+//            let distance = value as? Float
+//            self.displayMessage(withTitle: "Alert", message: "Something is reaching your home.")
+//            self.warningText.text = "Something is reaching your home."
+//            let utterance = AVSpeechUtterance(string: "Hi, something is near your door, please check.")
+//            let synth = AVSpeechSynthesizer()
+//            synth.speak(utterance)
+//
+//        })
         
         self.view.layer.contents = UIImage(named:"stayhome")?.cgImage
         //Speak out

@@ -30,7 +30,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
     override func viewDidLoad() {
         animations()
         
-        let utterance = AVSpeechUtterance(string: "Press left side to go arriving-home mode, press right side to go leaving-home mode.")
+        let utterance = AVSpeechUtterance(string: "Press left side monitor your house and press right side to detect the object. ")
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
         let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapFunction))
