@@ -53,6 +53,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self!.control = true
                     //Alert enter
                     //Before going to home page
+                    //entering ID
                     self!.alertEnter()
         //            self!.performSegue(withIdentifier: "loginSegue", sender: nil)
                 }
