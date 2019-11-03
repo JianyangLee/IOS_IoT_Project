@@ -52,6 +52,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     strongSelf.statusLabel.text = "Verification done!"
                     self!.control = true
                     //Alert enter
+                    //Before going to home page
                     self!.alertEnter()
         //            self!.performSegue(withIdentifier: "loginSegue", sender: nil)
                 }
