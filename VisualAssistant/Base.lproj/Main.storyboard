@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lfm-ce-edm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lfm-ce-edm">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -193,7 +193,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Back">
-                                    <color key="titleColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="systemIndigoColor" red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="lfm-ce-edm" kind="show" id="4vL-b2-JOG"/>
@@ -298,9 +298,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="ls7-iI-waq"/>
                     </view>
-                    <navigationItem key="navigationItem" id="rpa-H7-ZsZ">
-                        <barButtonItem key="backBarButtonItem" title=" " id="Os9-6j-B2X"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="rpa-H7-ZsZ"/>
                     <connections>
                         <outlet property="LocationTextView" destination="O0f-49-fyP" id="m4O-Jb-lsG"/>
                         <outlet property="OutsideUIButton" destination="GPr-IM-aja" id="GZv-gG-hG7"/>
@@ -363,12 +361,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cN4-Gn-xhf">
+                                <rect key="frame" x="0.0" y="629" width="414" height="233"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cN4-Gn-xhf" secondAttribute="height" multiplier="16:9" id="r8i-d7-oxC"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AO0-ss-mea">
+                                <rect key="frame" x="129" y="250" width="156" height="156"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="AO0-ss-mea" secondAttribute="height" multiplier="1:1" id="S3l-dp-Hj2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="120"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="mAf-5u-t08" firstAttribute="bottom" secondItem="cN4-Gn-xhf" secondAttribute="bottom" id="1aH-0r-wZh"/>
+                            <constraint firstItem="AO0-ss-mea" firstAttribute="centerX" secondItem="8d0-3b-sfn" secondAttribute="centerX" id="5IT-Nb-Rvn"/>
+                            <constraint firstItem="AO0-ss-mea" firstAttribute="centerY" secondItem="8d0-3b-sfn" secondAttribute="centerY" constant="-120" id="EdA-qI-Rk9"/>
+                            <constraint firstItem="cN4-Gn-xhf" firstAttribute="leading" secondItem="mAf-5u-t08" secondAttribute="leading" id="aUg-nN-388"/>
+                            <constraint firstItem="cN4-Gn-xhf" firstAttribute="trailing" secondItem="mAf-5u-t08" secondAttribute="trailing" id="xin-Ot-awa"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="mAf-5u-t08"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="daS-9F-3XG"/>
                     <connections>
+                        <outlet property="homeImageView" destination="cN4-Gn-xhf" id="2lM-P0-hBi"/>
+                        <outlet property="startButton" destination="AO0-ss-mea" id="a9e-CT-8cy"/>
                         <outlet property="warningText" destination="3vk-lM-kN5" id="PyZ-sq-jlI"/>
                     </connections>
                 </viewController>

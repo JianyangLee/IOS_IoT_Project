@@ -127,31 +127,23 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         LocationTextView.center.y  -= view.bounds.height
         TempTextView.center.x -= view.bounds.width
         PressureTextView.center.x += view.bounds.width
-        StayHomeUIButton.center.x -= view.bounds.width
-        OutsideUIButton.center.x += view.bounds.width
-        SpeakingUIButton.center.y  += view.bounds.height
+        StayHomeUIButton.center.x += view.bounds.width
+        OutsideUIButton.center.x -= view.bounds.width
+        SpeakingUIButton.center.y  -= view.bounds.height
         //move the element back
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 2 , delay: 0 , usingSpringWithDamping: 0.3 , initialSpringVelocity: 8 , options: [] , animations: {
             self.TimeTextView.center.y += self.view.bounds.height
-        }
-        UIView.animate(withDuration: 1) {
             self.LocationTextView.center.y += self.view.bounds.height
-        }
-        UIView.animate(withDuration: 1) {
             self.TempTextView.center.x += self.view.bounds.width
-        }
-        UIView.animate(withDuration: 1) {
             self.PressureTextView.center.x -= self.view.bounds.width
-        }
+        }, completion: nil)
+     
         UIView.animate(withDuration: 1) {
-            self.SpeakingUIButton.center.y -= self.view.bounds.height
+            self.SpeakingUIButton.center.y += self.view.bounds.height
+            self.StayHomeUIButton.center.x -= self.view.bounds.width
+            self.OutsideUIButton.center.x += self.view.bounds.width
         }
-        UIView.animate(withDuration: 1) {
-            self.StayHomeUIButton.center.x += self.view.bounds.width
-        }
-        UIView.animate(withDuration: 1) {
-            self.OutsideUIButton.center.x -= self.view.bounds.width
-        }
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])

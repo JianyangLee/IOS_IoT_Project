@@ -13,9 +13,13 @@ import FirebaseDatabase
 
 class AtHomeViewController: UIViewController {
     var ref: DatabaseReference!
+    @IBOutlet weak var homeImageView: UIImageView!
     @IBOutlet weak var warningText: UILabel!
+    @IBOutlet weak var startButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        homeImageView.loadGif(name: "house")
+        animate()
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         let date = Date()
         let formatter = DateFormatter()
@@ -71,6 +75,24 @@ class AtHomeViewController: UIViewController {
         synth.speak(utterance)
             
          }
+    func animate(){
+        var arr = [UIImage]()
+        let w : CGFloat = 200
+        for i in 0 ..< 200 {
+          UIGraphicsBeginImageContextWithOptions(CGSize(width: w, height: w), false, 0)
+          let context = UIGraphicsGetCurrentContext()!
+          context.setFillColor(UIColor.red.cgColor)
+          let ii = CGFloat(i)
+          let rect = CGRect(x: ii, y:ii, width: w-ii*2, height: w-ii*2)
+          context.addEllipse(in: rect)
+          context.fillPath()
+          let im = UIGraphicsGetImageFromCurrentImageContext()!
+          UIGraphicsEndImageContext()
+          arr.append(im)
+        }
+        let im = UIImage.animatedImage(with: arr, duration: 3)
+        self.startButton.setImage(im, for: .normal)
+    }
     
 //    func displaySoundsAlert() {
 //        let alert = UIAlertController(title: "Warning", message: nil, preferredStyle: UIAlertController.Style.alert)
