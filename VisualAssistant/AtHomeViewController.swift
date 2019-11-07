@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import FirebaseDatabase
 
+
 class AtHomeViewController: UIViewController {
     var ref: DatabaseReference!
     @IBOutlet weak var warningText: UILabel!
@@ -26,25 +27,24 @@ class AtHomeViewController: UIViewController {
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
         
-//        self.ref = Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("Motion")
-//
-//        self.ref?.observe(.childAdded, with: { (snapshot) in
-//            guard let restDict = snapshot.value as? [String: Any] else { return }
-//            let value = restDict["distance"] as! NSNumber
-//
-//            let distance = value as? Float
-//            self.displayMessage(withTitle: "Alert", message: "Something is reaching your home.")
-//            self.warningText.text = "Something is reaching your home."
-//            let utterance = AVSpeechUtterance(string: "Hi, something is near your door, please check.")
-//            let synth = AVSpeechSynthesizer()
-//            synth.speak(utterance)
-//
-//        })
+        self.ref = Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("Motion")
+
+        self.ref?.observe(.childAdded, with: { (snapshot) in
+            guard let restDict = snapshot.value as? [String: Any] else { return }
+            
+            self.displayMessage(withTitle: "Warning", message: "Be care, somebody is in your house.")
+
+        })
         
         self.view.layer.contents = UIImage(named:"stayhome")?.cgImage
         //Speak out
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+          //Remove all observers when quit the page.
+          self.ref.removeAllObservers()
+      }
     
 
     /*
@@ -57,9 +57,42 @@ class AtHomeViewController: UIViewController {
     }
     */
     func displayMessage(withTitle: String, message: String){
-             let alert = UIAlertController(title: withTitle, message: message, preferredStyle: UIAlertController.Style.alert)
-             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
-             self.present(alert,animated: true,completion: nil)
+        for _ in 1...3 {
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            usleep(600000)
+        }
+        let alert = UIAlertController(title: withTitle, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert,animated: true,completion: nil)
+        AudioServicesPlaySystemSound (1008)
+        sleep(2)
+        let utterance = AVSpeechUtterance(string: "Be care, somebody is enter into your house.")
+        let synth = AVSpeechSynthesizer()
+        synth.speak(utterance)
+            
          }
+    
+//    func displaySoundsAlert() {
+//        let alert = UIAlertController(title: "Warning", message: nil, preferredStyle: UIAlertController.Style.alert)
+//        for _ in 1...3 {
+//                       AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+//                       usleep(600000)
+//                   }
+//        alert.addAction(UIAlertAction(title: "Be care, somebody is in your house.", style: .default, handler: {_ in
+//            AudioServicesPlayAlertSound(UInt32(1008))
+//            self.displaySoundsAlert()
+//        }))
+//
+//        AudioServicesPlaySystemSound (1008)
+//        sleep(2)
+//        let utterance = AVSpeechUtterance(string: "Be care, somebody is in your house.")
+//        let synth = AVSpeechSynthesizer()
+//        synth.speak(utterance)
+//
+//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//        self.present(alert, animated: true, completion: nil)
+//    }
+    
+    
     
 }

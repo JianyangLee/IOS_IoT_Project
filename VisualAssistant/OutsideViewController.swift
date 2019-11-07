@@ -38,7 +38,7 @@ class OutsideViewController: UIViewController {
 //            let value = restDict["distance"] as! NSNumber
             self.displayMessage(withTitle: "Watch out!", message: "Watch out the obstacle.")
 //            let distance = value as? Float
-            let utterance = AVSpeechUtterance(string: "Watch out.")
+            let utterance = AVSpeechUtterance(string: "Watch out the obstacle.")
             let synth = AVSpeechSynthesizer()
             synth.speak(utterance)
             
