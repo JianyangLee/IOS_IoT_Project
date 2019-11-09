@@ -28,30 +28,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
     
     var ref: DatabaseReference!
     override func viewDidLoad() {
-        animations()
-        
-        let utterance = AVSpeechUtterance(string: "Press left side monitor your house and press right side to detect the object. ")
-        let synth = AVSpeechSynthesizer()
-        synth.speak(utterance)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapFunction))
-        TimeTextView.isUserInteractionEnabled = true
-        TimeTextView.addGestureRecognizer(tap)
-        
-        let loc = UITapGestureRecognizer(target: self, action: #selector(ViewController.currentLoc))
-        LocationTextView.isUserInteractionEnabled = true
-        LocationTextView.addGestureRecognizer(loc)
-        
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        Timer.scheduledTimer(timeInterval: 1.0,target:self,selector: #selector(self.setTime), userInfo: nil, repeats: true )
-        
-        //Change the date format
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy"
-        let result = formatter.string(from: date)
-        
-//    FirebaseDatabase.Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("tempAndPressure").removeValue()
         //Setting location manager
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -59,12 +36,30 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         locationManager.distanceFilter = 10
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
-        //
-        //background
+        
+        //Set the animations to the elements
+        animations()
+        
+        //Set background
         self.view.layer.contents = UIImage(named:"bghome")?.cgImage
         
+        //Read the information for the users
+        speakOnHomepage()
+        
+        //Make the label operatable
+        speakLabel()
+        
+        //refresh time every seconds
+        Timer.scheduledTimer(timeInterval: 1.0,target:self,selector: #selector(self.setTime), userInfo: nil, repeats: true )
+        
+        //Reformat the date for firebase
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        let result = formatter.string(from: date)
+        
+        //Fire base listener
         self.ref = Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("tempAndPressure")
-
         sleep(4)
         self.ref?.observe(.childAdded, with: { (snapshot) in
             guard let restDict = snapshot.value as? [String: Any] else { return }
@@ -83,14 +78,9 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
             self.TempTextView.text = "\(temp) °C "
             self.PressureTextView.text = "\(pressure) kPa"
         })
-       
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
     }
     
+    //Setting the time TapGestureRecognizer
     @objc
     func tapFunction(sender:UITapGestureRecognizer) {
         let date = NSDate()
@@ -103,6 +93,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         synth.speak(utterance)
       }
    
+    //Setting the location TapGestureRecognizer
     @objc
     func currentLoc(sender:UITapGestureRecognizer) {
         let utterance = AVSpeechUtterance(string: "You are now in the " + LocationTextView.text! + " currently")
@@ -110,6 +101,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
            synth.speak(utterance)
          }
     
+    //Speak the text with devices speaker
     @IBAction func speechOut(_ sender: Any) {
         let text1 = "Current temperature is" + TempTextView.text!
         let text2 = " and current air pressure is" + PressureTextView.text!
@@ -119,6 +111,24 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         synth.speak(utterance)
     }
     
+    //Add UITapGestureRecognizer on the location and time label
+    func speakLabel(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapFunction))
+        TimeTextView.isUserInteractionEnabled = true
+        TimeTextView.addGestureRecognizer(tap)
+        
+        let loc = UITapGestureRecognizer(target: self, action: #selector(ViewController.currentLoc))
+        LocationTextView.isUserInteractionEnabled = true
+        LocationTextView.addGestureRecognizer(loc)
+    }
+    
+    //Read the information for the users after they login
+    func speakOnHomepage()
+    {
+        let utterance = AVSpeechUtterance(string: "Press left side monitor your house and press right side to detect the object. ")
+        let synth = AVSpeechSynthesizer()
+        synth.speak(utterance)
+    }
     //Add animations in the home page element
     func animations ()
     {
@@ -130,14 +140,14 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         StayHomeUIButton.center.x += view.bounds.width
         OutsideUIButton.center.x -= view.bounds.width
         SpeakingUIButton.center.y  -= view.bounds.height
-        //move the element back
+        
+        //move the elements back
         UIView.animate(withDuration: 2 , delay: 0 , usingSpringWithDamping: 0.3 , initialSpringVelocity: 8 , options: [] , animations: {
             self.TimeTextView.center.y += self.view.bounds.height
             self.LocationTextView.center.y += self.view.bounds.height
             self.TempTextView.center.x += self.view.bounds.width
             self.PressureTextView.center.x -= self.view.bounds.width
         }, completion: nil)
-     
         UIView.animate(withDuration: 1) {
             self.SpeakingUIButton.center.y += self.view.bounds.height
             self.StayHomeUIButton.center.x -= self.view.bounds.width
@@ -146,6 +156,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         
     }
     
+    //Get the longitude and latitude from devices
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         let location = locations.last!
@@ -155,9 +166,11 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
                     print("latitude: \(location.coordinate.latitude) longitude: \(location.coordinate.longitude)")
                     self.locationManager.stopUpdatingLocation()
         }
+        //Call the method transfer the longtitude and latitude to address
         locationToAddress ()
     }
     
+    //Set the time on TimeTextView
     @objc func setTime() {
         var date = NSDate()
         var dateformatter = DateFormatter()
@@ -167,6 +180,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         TimeTextView.text = strNowTime;
     }
 
+    //Transfer the longitude and latitude to address
     func locationToAddress ()
     {
         if let currentLocation = currentLocation {
@@ -191,6 +205,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         }
     }
     
+    //Display the alert message
     func displayMessage(withTitle: String, message: String){
         let alert = UIAlertController(title: withTitle, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))

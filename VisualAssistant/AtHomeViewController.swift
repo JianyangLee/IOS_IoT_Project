@@ -18,31 +18,39 @@ class AtHomeViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Set gif image
         homeImageView.loadGif(name: "house")
-        animate()
+        
+        //Set round button content
+        roundButton()
+        
+        //Speak out the information
+        let utterance = AVSpeechUtterance(string: "It is monitoring your home.")
+        let synth = AVSpeechSynthesizer()
+        synth.speak(utterance)
+        
+        //get system sound
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        
+        //format the date for firebase
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
         let result = formatter.string(from: date)
         
+        //User need wear the devices then power on the device. If user wears the devices with power on, it will create some wrong error message. We clean those massage here in case use use it in a wrong way and get wrong warnings
     FirebaseDatabase.Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("Motion").removeValue()
-        let utterance = AVSpeechUtterance(string: "It is monitoring your home.")
-        let synth = AVSpeechSynthesizer()
-        synth.speak(utterance)
         
+        //Monitor the firebase
         self.ref = Database.database().reference().root.child("assignment3-7cbb8").child("Data").child("10001").child(result).child("Motion")
-
         self.ref?.observe(.childAdded, with: { (snapshot) in
             guard let restDict = snapshot.value as? [String: Any] else { return }
-            
             self.displayMessage(withTitle: "Warning", message: "Be care, somebody is in your house.")
-
         })
         
+        //Set background
         self.view.layer.contents = UIImage(named:"stayhome")?.cgImage
-        //Speak out
-        // Do any additional setup after loading the view.
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -50,16 +58,7 @@ class AtHomeViewController: UIViewController {
           self.ref.removeAllObservers()
       }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    //Set alert when the sensor detect the theif
     func displayMessage(withTitle: String, message: String){
         for _ in 1...3 {
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
@@ -75,7 +74,9 @@ class AtHomeViewController: UIViewController {
         synth.speak(utterance)
             
          }
-    func animate(){
+    
+    //Change the button content
+    func roundButton(){
         var arr = [UIImage]()
         let w : CGFloat = 200
         for i in 0 ..< 200 {
