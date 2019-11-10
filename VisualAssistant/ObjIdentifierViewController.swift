@@ -39,6 +39,7 @@ class ObjIdentifierViewController: UIViewController, AVCaptureVideoDataOutputSam
     func startCamera(){
         let capture = AVCaptureSession()
         
+        //Youtube video tutorial https://www.youtube.com/watch?v=T4t73CXB7CU
         guard let capDevice = AVCaptureDevice.default(for: .video) else { return }
         guard let input = try? AVCaptureDeviceInput(device: capDevice) else { return }
         
