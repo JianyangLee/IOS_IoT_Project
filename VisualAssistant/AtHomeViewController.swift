@@ -69,7 +69,7 @@ class AtHomeViewController: UIViewController {
         self.present(alert,animated: true,completion: nil)
         AudioServicesPlaySystemSound (1008)
         sleep(2)
-        let utterance = AVSpeechUtterance(string: "Be care, somebody is enter into your house.")
+        let utterance = AVSpeechUtterance(string: "Be care, somebody is entering into your house.")
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
             

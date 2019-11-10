@@ -33,6 +33,8 @@
 		C07610BF00AACB37B24FC725 /* Pods_VisualAssistantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79D03753ACD5B195514BE7B0 /* Pods_VisualAssistantTests.framework */; };
 		D854DBCE236565B0006EBAB2 /* AtHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D854DBCD236565AF006EBAB2 /* AtHomeViewController.swift */; };
 		D854DBD0236565BC006EBAB2 /* OutsideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D854DBCF236565BC006EBAB2 /* OutsideViewController.swift */; };
+		D86B519F2376D58700327252 /* ObjIdentifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86B519E2376D58700327252 /* ObjIdentifierViewController.swift */; };
+		D86B51A12376D64E00327252 /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D86B51A02376D64D00327252 /* Resnet50.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,8 @@
 		C37BBCE41AC2C599417EB629 /* Pods_VisualAssistantUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VisualAssistantUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D854DBCD236565AF006EBAB2 /* AtHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtHomeViewController.swift; sourceTree = "<group>"; };
 		D854DBCF236565BC006EBAB2 /* OutsideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutsideViewController.swift; sourceTree = "<group>"; };
+		D86B519E2376D58700327252 /* ObjIdentifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjIdentifierViewController.swift; sourceTree = "<group>"; };
+		D86B51A02376D64D00327252 /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
 		DC6A0C9E3DEC433856E480A0 /* Pods-VisualAssistantUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VisualAssistantUITests.release.xcconfig"; path = "Target Support Files/Pods-VisualAssistantUITests/Pods-VisualAssistantUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E051D576E5A81C6F4A37B246 /* Pods-VisualAssistantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VisualAssistantTests.debug.xcconfig"; path = "Target Support Files/Pods-VisualAssistantTests/Pods-VisualAssistantTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E4595C12263250DA01BC8979 /* Pods-VisualAssistant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VisualAssistant.release.xcconfig"; path = "Target Support Files/Pods-VisualAssistant/Pods-VisualAssistant.release.xcconfig"; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 				BA07248B236E7C5E0023E251 /* detecting.gif */,
 				BA0724932373CA7B0023E251 /* house.gif */,
 				BA07248F236E7CF30023E251 /* UIImage+Gif.swift */,
+				D86B519E2376D58700327252 /* ObjIdentifierViewController.swift */,
+				D86B51A02376D64D00327252 /* Resnet50.mlmodel */,
 			);
 			path = VisualAssistant;
 			sourceTree = "<group>";
@@ -430,6 +436,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B3347BE2352C04F007DFF77 /* ViewController.swift in Sources */,
+				D86B51A12376D64E00327252 /* Resnet50.mlmodel in Sources */,
+				D86B519F2376D58700327252 /* ObjIdentifierViewController.swift in Sources */,
 				9B3347BA2352C04F007DFF77 /* AppDelegate.swift in Sources */,
 				D854DBD0236565BC006EBAB2 /* OutsideViewController.swift in Sources */,
 				BA072490236E7CF30023E251 /* UIImage+Gif.swift in Sources */,

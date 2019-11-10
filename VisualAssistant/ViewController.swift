@@ -22,6 +22,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
     @IBOutlet weak var StayHomeUIButton: UIButton!
     @IBOutlet weak var OutsideUIButton: UIButton!
     @IBOutlet weak var SpeakingUIButton: UIButton!
+    @IBOutlet weak var CameraUIButton: UIButton!
     
     var locationManager :CLLocationManager!
     var currentLocation :CLLocation!
@@ -70,7 +71,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
                 //vibration
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
                 self.displayMessage(withTitle: "Cold Weather", message: "Please wearing more clothes.")
-                let utterance = AVSpeechUtterance(string: "The temperature is below 20°C, " + "Please wearing more clothes.")
+                let utterance = AVSpeechUtterance(string: "The temperature is below 20 °C, " + "Please wearing more clothes.")
                 let synth = AVSpeechSynthesizer()
                 synth.speak(utterance)
             }
@@ -129,6 +130,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
     }
+    
     //Add animations in the home page element
     func animations ()
     {
@@ -140,7 +142,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         StayHomeUIButton.center.x += view.bounds.width
         OutsideUIButton.center.x -= view.bounds.width
         SpeakingUIButton.center.y  -= view.bounds.height
-        
+        CameraUIButton.center.y  -= view.bounds.height
         //move the elements back
         UIView.animate(withDuration: 2 , delay: 0 , usingSpringWithDamping: 0.3 , initialSpringVelocity: 8 , options: [] , animations: {
             self.TimeTextView.center.y += self.view.bounds.height
@@ -150,6 +152,7 @@ class ViewController: UIViewController ,CLLocationManagerDelegate{
         }, completion: nil)
         UIView.animate(withDuration: 1) {
             self.SpeakingUIButton.center.y += self.view.bounds.height
+            self.CameraUIButton.center.y += self.view.bounds.height
             self.StayHomeUIButton.center.x -= self.view.bounds.width
             self.OutsideUIButton.center.x += self.view.bounds.width
         }
